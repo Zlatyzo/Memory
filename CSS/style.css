@@ -1,0 +1,157 @@
+/* Variables de couleurs et thème */
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --card-hover: #334155;
+    --text-color: #f8fafc;
+    --accent-color: #38bdf8;
+    --success-color: #4ade80;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}
+
+/* Réinitialisation de base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* En-tête et Titre */
+h1 {
+    font-size: 2.2rem;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+p {
+    color: #94a3b8;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Panneau de score et statistiques */
+#moves, #timer {
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: inline-block;
+    margin: 0 10px 15px 10px;
+    background-color: #1e293b;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+}
+
+/* Message de victoire */
+#result {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--success-color);
+    margin-bottom: 15px;
+    min-height: 30px;
+    text-align: center;
+}
+
+/* Bouton Recommencer */
+#restart-btn {
+    background-color: var(--accent-color);
+    color: #0f172a;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    margin-bottom: 25px;
+}
+
+#restart-btn:hover {
+    background-color: #7dd3fc;
+    transform: translateY(-2px);
+}
+
+#restart-btn:active {
+    transform: translateY(0);
+}
+
+/* Plateau de jeu (CSS Grid) */
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 150px);
+    gap: 15px;
+    perspective: 1000px;
+}
+
+/* Style des cartes */
+.card {
+    width: 150px;
+    height: 150px;
+    background-color: var(--card-bg);
+    border: 2px solid #334155;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
+}
+
+.card:hover {
+    background-color: var(--card-hover);
+    border-color: var(--accent-color);
+    transform: scale(1.03);
+}
+
+.card:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Image à l'intérieur de la carte */
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+.card.matched {
+    border-color: var(--success-color);
+    opacity: 0.6;
+    cursor: default;
+}
+
+.card.matched:hover {
+    transform: none;
+    background-color: var(--card-bg);
+}
+
+/* Responsive pour mobiles */
+@media (max-width: 680px) {
+    #game-board {
+        grid-template-columns: repeat(4, 75px);
+        gap: 8px;
+    }
+
+    .card {
+        width: 75px;
+        height: 75px;
+        border-radius: 8px;
+    }
+}
